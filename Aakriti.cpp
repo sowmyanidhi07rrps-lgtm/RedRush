@@ -115,7 +115,6 @@ public:
 
 #endif
 // ================================================
-// DAY 3 ADDITION
 // CLASS — DONORLIST
 // Stores and manages multiple donors
 // ================================================
