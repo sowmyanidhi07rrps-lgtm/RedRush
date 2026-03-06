@@ -63,7 +63,7 @@ int main(){
 }
 
 //==========================================
-//MACHINEENGINE CLASS
+//MATCHINGENGINE CLASS
 //FINDS RIGHT BLOOD FOR RIGHT PATIENT
 //==========================================
 //finds the right blood for the right patient
@@ -126,3 +126,75 @@ class MatchingEngine{
 		}
 };
 
+
+
+
+
+int main(){
+	BloodBank bank;
+	Donor donors[100];
+	int DonorCount=0;
+	MatchingEngine=engine;
+	Menu mainMenu("RedRush- Blood Donation Coordination System");
+	Table donorTable("Registered Donors");
+	
+	cout<<endl;
+	cout<<"========================================="<<endl;
+	cout<<"==Welcome to RedRush=="<<endl;
+	cout<<"==Blood Donation Coordination System=="<<endl;
+	cout<<"========================================="<<endl;
+	
+	string options[]={
+		"Register Donor",
+		"Add blood unit to blood bank",
+		"View Blood Bank Inventory",
+		"Raise Emergency Request",
+		"Check Expiry Alerts",
+		"View All Donors",
+		"View Statistics",
+		"Exit"
+	};
+	int choice;
+	do{
+		mainMenu.display(options,8);
+		cin>>choice;
+		if(choice==1){
+			string name,bg;
+			int age,days;
+			cout<<endl;
+			cout<<"====Regiser New Donor===="<<endl;
+			cout<<"Enter Name: ";
+			cin>>name;
+			cout<<"Enter Age: ";
+			cin>>age;
+			cout<<"Enter Blood Group: ";
+			cin>>bg;
+			cout<<"Days since last donation: "<<endl;
+			cout<<"Enter 0 if donation is for the first time";
+			cin>>days;
+			donors[DonorCount]=Donor(name,age,bg,days);
+			DonorCount=DonorCount+1;
+			cout<<endl;
+			cout<<"====Donor Regitered Successfully!===="<<endl;
+		} 
+		else if(choice==2){
+			string bg;
+			int qty,exp;
+			cout<<endl;
+			cout<<"====Add Blood Unit===="<<endl;
+			cout<<"Enter Blood Group: ";
+			cin>>bg;
+			cout<<"Enter Quantity: ";
+			cin>>qty;
+			cout<<"Enter Expiry Days: ";
+			cin>>exp;
+			bank.addUnit(new BloodUnit(bg,qty,exp))
+			cout<<endl;
+			cout<<"====Blood Unit Added Successfully!===="<<endl;
+		}
+		else if(choice==3){
+			bank.displayInventory();
+		}
+		
+	}
+}
