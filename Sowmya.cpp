@@ -66,3 +66,63 @@ int main(){
 //MACHINEENGINE CLASS
 //FINDS RIGHT BLOOD FOR RIGHT PATIENT
 //==========================================
+//finds right blood for right patient
+class MatchingEngine{
+	public:
+		//searching blood bank for matching blood groups
+		void MatchFromBank(EmergencyRequest req, BloodBank bank){
+			cout<<endl;
+			cout<<"==Searching Blood Ban==k"<<endl;
+			if(bank.isAvailable(req.BloodGroupNeeded)==1){
+				cout<<endl;
+				cout<<"====MATCH FOUND IN BLOOD GROUP===="<<endl;
+				cout<<"Blood Group: "<<req.BloodGroupNeeded<<endl;
+				cout<<"Patient Name: "<<req.PatientName<<endl;
+			}
+			else{
+				cout<<"====MATCH NOT FOUND IN BLOOD BANK===="<<endl;
+			}
+		}
+		void MatchFromDonors(EmergencyRequest req, Donor donors[], int DonorCount){
+			cout<<endl;
+			cout<<"==Searching Donors=="<<endl;
+			int found=0;
+			int i=0;
+			while(i<DonorCount){
+				if(donors[i].BloodGroup==req.BloodGroupNeeded && donors[i].isEligble()==1){
+					cout<<endl;
+					cout<<"==DONOR FOUND=="<<endl;
+					cout<<"Donor Name: "<<donors[i].Name<<endl;
+					cout<<"Blood Group: "<<donors[i].BloodGroup<<endl;
+					cout<<"Patient Name: "<<req.PatientName<<endl;
+					found=1;
+				}
+				i=i+1;
+			}
+			if(found==0){
+				cout<<"==NO ELIGIBLE DONOR FOUND=="<<endl;
+			}
+		}
+		//checking bank then donor
+		void FindMatch(EmergencyRequest req, BloodBank bank, Donor donors[], int DonorCount){
+			cout<<endl;
+			cout<<"================================="<<endl;
+			cout<<"==START EMERGENCY MATCH=="<<endl;
+			cout<<"================================="<<endl;
+			req.display();
+			if(req.UrgencyLevel=="CRITICAL"){
+				cout<<"!!!!!!!!!!!!!!!!!!!!!"<<endl;
+				cout<<"CRITICAL CASE URGENT"<<endl;
+				cout<<"!!!!!!!!!!!!!!!!!!!!!"<<endl;
+			}
+			if(bank.isAvailable(req.BloodGroupNeeded)==1){
+				MatchFromBank(req,bank);
+			}
+			else{
+				MatchFromBank(req,bank);
+				MatchFromDonors(req,donors,DonorCount);
+			}
+			cout<<"================================="<<endl;
+		}
+};
+
