@@ -66,10 +66,10 @@ int main(){
 //MACHINEENGINE CLASS
 //FINDS RIGHT BLOOD FOR RIGHT PATIENT
 //==========================================
-//finds right blood for right patient
+//finds the right blood for the right patient
 class MatchingEngine{
 	public:
-		//searching blood bank for matching blood groups
+		//searching the blood bank for matching blood groups
 		void MatchFromBank(EmergencyRequest req, BloodBank bank){
 			cout<<endl;
 			cout<<"==Searching Blood Ban==k"<<endl;
