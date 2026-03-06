@@ -1,10 +1,15 @@
 //main.cpp
 //author: Sowmya
 //RedRush- Emergency Blood Donor Coordination System
+
+//==========================================
+//EMERGENCYREQUEST CLASS
+//STORIES DETAILS OF ONE EMERGENCY REQUEST
+//==========================================
 #include<string>
 using namespace std;
 
-//storing detail of one emergency request
+//storing details of one emergency request
 class EmergencyRequest{
 	public:
 		string PatientName, BloodGroupNeeded, UrgencyLevel;
@@ -36,7 +41,7 @@ class EmergencyRequest{
 			}
 			return 0;
 		}
-		//shows total number of request
+		//shows the total number of requests
 		static int showtotal(){
 			return TotalRequests;
 		}
@@ -56,3 +61,8 @@ int main(){
 	
 	EmergencyRequest req(name,bg,urgency);
 }
+
+//==========================================
+//MACHINEENGINE CLASS
+//FINDS RIGHT BLOOD FOR RIGHT PATIENT
+//==========================================
