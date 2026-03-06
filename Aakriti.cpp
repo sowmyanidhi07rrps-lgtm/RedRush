@@ -114,4 +114,88 @@ public:
 };
 
 #endif
+// ================================================
+// DAY 3 ADDITION
+// CLASS — DONORLIST
+// Stores and manages multiple donors
+// ================================================
 
+class DonorList {
+
+private:
+
+    Donor* donors[50];   // array to store donor pointers
+    int count;           // number of donors
+
+public:
+
+    // CONSTRUCTOR
+    DonorList() {
+        count = 0;
+        cout << "Donor list created." << endl;
+    }
+
+    // ADD DONOR
+    void addDonor(Donor* d) {
+
+        donors[count] = d;
+        count++;
+
+        cout << "Donor added to list." << endl;
+    }
+
+    // DISPLAY ALL DONORS
+    void displayAll() {
+
+        cout << endl;
+        cout << "====== DONOR LIST ======" << endl;
+
+        for(int i = 0; i < count; i++) {
+            donors[i]->display();
+        }
+
+        cout << "Total donors: " << count << endl;
+    }
+
+    // SEARCH DONOR BY BLOOD GROUP
+    void searchByBloodGroup(string bg) {
+
+        cout << endl;
+        cout << "Searching donors with blood group: " << bg << endl;
+
+        bool found = false;
+
+        for(int i = 0; i < count; i++) {
+
+            if(donors[i]->getBloodGroup() == bg) {
+
+                donors[i]->display();
+                found = true;
+
+            }
+
+        }
+
+        if(!found) {
+            cout << "No donor found with this blood group." << endl;
+        }
+
+    }
+
+    // SHOW ONLY ELIGIBLE DONORS
+    void showEligibleDonors() {
+
+        cout << endl;
+        cout << "====== ELIGIBLE DONORS ======" << endl;
+
+        for(int i = 0; i < count; i++) {
+
+            if(donors[i]->isEligible()) {
+                donors[i]->display();
+            }
+
+        }
+
+    }
+
+};
