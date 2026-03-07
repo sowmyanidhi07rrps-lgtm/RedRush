@@ -196,5 +196,64 @@ int main(){
 			bank.displayInventory();
 		}
 		
-	}
+		else if(choice==4){
+			string name,bg,urgency;
+			cout<<endl;
+			cout<<"====Raise Emergency Request===="<<endl;
+			cout<<"Patient Name: ";
+			cin>>name;
+			cout<<"Blood Group Needed: ";
+			cin>>bg;
+			cout<<"Urgency Level(Critical/Moderate/Low): ";
+			cin>>urgency;
+			EmergencyRequest req(name,bg,urgency);
+			engine.FindMatch(req,bank,donors,DonorCount);
+		}
+		else if(choice==5){
+			bank.checkExpiry();
+		}
+		else if(choice==6){
+			if (DonorCount==0){
+				cout<<endl;
+				cout<<"==No Donors Registered=="<<endl;
+			}
+			else{
+				donorTable.printHeader("Name","Blood Group","Status");
+				int i=0;
+				while(i<DonorCount){
+					string status;
+					if(donors[i].isEligible()==1){
+						status="==ELIGIBLE==";
+					}
+					else{
+						status="==NOT ELIGIBLE=="
+					}
+					donorTable.printRow(donors[i].name,donors[i].bloodGroup,status);
+					i=i+1;
+				}
+				donorTable.printFooter();
+			}
+		}
+		else if(choice==7){
+            cout<<endl;
+            cout<<"========================"<<endl;
+            cout<<"SYSTEM STATISTICS"<<endl;
+            cout<<"========================="<<endl;
+            cout<<"Total Donors Registered: "<<DonorCount<<endl;
+            cout<<"Total Blood Units: "<< BloodBank::showTotalUnits()<<endl;
+            cout<<"Total Emergency Requests: "<<EmergencyRequest::showTotalRequests()<<endl;
+        }
+        else if(choice==8){
+            cout<<endl;
+            cout<<"====================================="<<endl;
+            cout<<"Thank you for using RedRush"<<endl;
+            cout<<"Saving lives one match at a time"<<endl;
+            cout<<"====================================="<<endl;
+        }
+        else{
+            cout<<endl;
+            cout<<"Invalid choice! Please try again"<<endl;
+		}
+    } while(choice!=8);
+    return 0;
 }
