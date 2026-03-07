@@ -17,7 +17,7 @@ class Menu
 void display(string options[],int size)
 {
   cout<<endl;
-  cout<<"===== "<< title << "====="<<endl;
+  cout<<"===== "<<title<< "====="<<endl;
   int i=0;
   while(i<size)
   {
