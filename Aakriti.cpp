@@ -1,200 +1,143 @@
-//main.cpp
-//author: Sowmya
-//RedRush- Emergency Blood Donor Coordination System
-#ifndef BLOODBANKMODULE_H
-#define BLOODBANKMODULE_H
-
-#include <iostream>
-#include <vector>
-using namespace std;
-
-// ===================== CLASS 1 : DONOR =====================
-class Donor {
-private:
-    string name;
-    int age;
-    string bloodGroup;
-    int daysSinceLastDonation;
-
-public:
-    // Constructor
-    Donor(string n, int a, string bg, int days) {
-        name = n;
-        age = a;
-        bloodGroup = bg;
-        daysSinceLastDonation = days;
-    }
-
-    // Check eligibility
-    bool canDonate() {
-        if (age >= 18 && age <= 60 && daysSinceLastDonation >= 56)
-            return true;
-        return false;
-    }
-
-    // Display donor info
-    void displayDonor() {
-        cout << "Name: " << name << endl;
-        cout << "Age: " << age << endl;
-        cout << "Blood Group: " << bloodGroup << endl;
-
-        if (canDonate())
-            cout << "Status: Eligible to Donate\n";
-        else
-            cout << "Status: Not Eligible to Donate\n";
-    }
-
-    string getBloodGroup() {
-        return bloodGroup;
-    }
-};
-
-// ===================== CLASS 2 : BLOOD UNIT =====================
-class BloodUnit {
-private:
-    string bloodGroup;
-    int quantity;      // in ml
-    int daysToExpire;
-
-public:
-    // Constructor
-    BloodUnit(string bg, int qty, int days) {
-        bloodGroup = bg;
-        quantity = qty;
-        daysToExpire = days;
-    }
-
-    string getBloodGroup() {
-        return bloodGroup;
-    }
-
-    int getDaysToExpire() {
-        return daysToExpire;
-    }
-
-    void displayBloodUnit() {
-        cout << "Blood Group: " << bloodGroup << endl;
-        cout << "Quantity: " << quantity << " ml" << endl;
-        cout << "Days to Expire: " << daysToExpire << endl;
-
-        if (daysToExpire < 5)
-            cout << "WARNING: Expiry less than 5 days!\n";
-    }
-};
-
-// ===================== CLASS 3 : BLOOD BANK =====================
-class BloodBank {
-private:
-    vector<BloodUnit> storage;
-
-public:
-    void addBloodUnit(BloodUnit unit) {
-        storage.push_back(unit);
-    }
-
-    bool isAvailable(string group) {
-        for (int i = 0; i < storage.size(); i++) {
-            if (storage[i].getBloodGroup() == group)
-                return true;
-        }
-        return false;
-    }
-
-    void showExpiringUnits() {
-        for (int i = 0; i < storage.size(); i++) {
-            if (storage[i].getDaysToExpire() < 5) {
-                storage[i].displayBloodUnit();
-            }
-        }
-    }
-
-    int totalUnits() {
-        return storage.size();
-    }
-};
-
-#endif
 // ================================================
-// CLASS — DONORLIST
-// Stores and manages multiple donors
+// Donor.cpp
+// Author: Akriti
+// Source file for donor management
 // ================================================
 
-class DonorList {
+#include "Donor.h"
 
-private:
 
-    Donor* donors[50];   // array to store donor pointers
-    int count;           // number of donors
+// PERSON CLASS
 
-public:
+Person::Person(string n, int a) {
+    name = n;
+    age = a;
+}
 
-    // CONSTRUCTOR
-    DonorList() {
-        count = 0;
-        cout << "Donor list created." << endl;
-    }
+Person::~Person() {
+}
 
-    // ADD DONOR
-    void addDonor(Donor* d) {
 
-        donors[count] = d;
-        count++;
+// DONOR CLASS
 
-        cout << "Donor added to list." << endl;
-    }
+int Donor::totalDonors = 0;
 
-    // DISPLAY ALL DONORS
-    void displayAll() {
+Donor::Donor() : Person("",0) {
+    bloodGroup = "";
+    daysSinceLastDonation = 0;
+}
 
-        cout << endl;
-        cout << "====== DONOR LIST ======" << endl;
+Donor::Donor(string n,int a,string bg,int days) : Person(n,a) {
+    bloodGroup = bg;
+    daysSinceLastDonation = days;
+    totalDonors = totalDonors + 1;
+}
 
-        for(int i = 0; i < count; i++) {
-            donors[i]->display();
-        }
+Donor::~Donor() {
+}
 
-        cout << "Total donors: " << count << endl;
-    }
+int Donor::isEligible() {
 
-    // SEARCH DONOR BY BLOOD GROUP
-    void searchByBloodGroup(string bg) {
+    if(age >= 18 && age <= 60 && daysSinceLastDonation >= 56)
+        return 1;
 
-        cout << endl;
-        cout << "Searching donors with blood group: " << bg << endl;
+    return 0;
+}
 
-        bool found = false;
+void Donor::display() {
 
-        for(int i = 0; i < count; i++) {
+    cout << endl;
+    cout << "--------------------------" << endl;
+    cout << "Name        : " << name << endl;
+    cout << "Age         : " << age << endl;
+    cout << "Blood Group : " << bloodGroup << endl;
+    cout << "Last Donated: " << daysSinceLastDonation << " days ago" << endl;
 
-            if(donors[i]->getBloodGroup() == bg) {
+    if(isEligible()==1)
+        cout << "Status      : Eligible to Donate" << endl;
+    else
+        cout << "Status      : Not Eligible" << endl;
 
-                donors[i]->display();
-                found = true;
+    cout << "--------------------------" << endl;
+}
 
-            }
+void Donor::display(string title) {
 
-        }
+    cout << endl;
+    cout << title << endl;
+    display();
+}
 
-        if(!found) {
-            cout << "No donor found with this blood group." << endl;
-        }
+int Donor::operator==(Donor d) {
 
-    }
+    if(bloodGroup == d.bloodGroup)
+        return 1;
 
-    // SHOW ONLY ELIGIBLE DONORS
-    void showEligibleDonors() {
+    return 0;
+}
 
-        cout << endl;
-        cout << "====== ELIGIBLE DONORS ======" << endl;
+int Donor::showTotalDonors() {
+    return totalDonors;
+}
 
-        for(int i = 0; i < count; i++) {
+string Donor::getName() {
+    return name;
+}
 
-            if(donors[i]->isEligible()) {
-                donors[i]->display();
-            }
+string Donor::getBloodGroup() {
+    return bloodGroup;
+}
 
-        }
 
-    }
+// BLOOD UNIT CLASS
 
-};
+BloodUnit::BloodUnit() {
+    bloodGroup="";
+    quantity=0;
+    expiryDays=0;
+}
+
+BloodUnit::BloodUnit(string bg,int qty,int exp) {
+    bloodGroup=bg;
+    quantity=qty;
+    expiryDays=exp;
+}
+
+BloodUnit::~BloodUnit() {
+}
+
+int BloodUnit::isExpired() {
+
+    if(expiryDays <= 0)
+        return 1;
+
+    return 0;
+}
+
+int BloodUnit::isExpiringSoon() {
+
+    if(expiryDays > 0 && expiryDays <= 5)
+        return 1;
+
+    return 0;
+}
+
+void BloodUnit::display() {
+
+    cout << endl;
+    cout << "--------------------------" << endl;
+    cout << "Blood Group : " << bloodGroup << endl;
+    cout << "Quantity    : " << quantity << " units" << endl;
+    cout << "Expiry      : " << expiryDays << " days" << endl;
+
+    if(isExpired())
+        cout << "Status      : EXPIRED - Remove!" << endl;
+
+    else if(isExpiringSoon())
+        cout << "Status      : Expiring Soon!" << endl;
+
+    else
+        cout << "Status      : Good" << endl;
+
+    cout << "--------------------------" << endl;
+}
