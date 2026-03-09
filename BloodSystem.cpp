@@ -2,6 +2,66 @@
 //author: Sowmya
 //RedRush- Emergency Blood Donor Coordination System
 
+#include<"BloodSystem.h">
+int BloodBank::totalUnits=0;
+BloodBank::Bloodbank(){
+	count=0;
+}
+BloodBank::~Bloodbank(){
+}
+void BloodBank::addUnit(BloodUnit u){
+	units[count]=u;
+	count=count+1;
+	totalUnits=totalUnits+1;
+}
+int BloodBank::isAvailable(string bloodGroup){
+	int i=0;
+	while(i<count){
+		if(units[i].bloodGroup==bloodGroup && units[i].isExpired()==0){
+			return 1;
+		}
+		i=i+1;
+	}
+	return 0;
+}
+void BloodBank::displayInventory(){
+	if(count==0){
+		cout<<endl;
+		cout<<"==Blood Bank is empty=="<<endl;
+		return;
+	}
+	cout<<endl;
+	cout<<"==Blood Bank inventory=="<<endl;
+	int i=0;
+	while(i<count){
+		units[i].display();
+		i=i+1;
+	}
+	cout<<"Total Units: "<<totalUnits<<endl;
+}
+void BloodBank::checkExpiry(){
+	cout<<endl;
+	cout<<"==Expiry Alert=="<<endl;
+	int found=0;
+	int i=0;
+	while(i<count){
+		if(units[i].isExpired()==1){
+			cout<<"CRITICAL: "<<units[i].bloodGroup<<" HAS EXPIRED!"<<endl;
+			found=1;
+		}
+		else if(units[i].isExpiringSonn()==1){
+			cout<<"WARNING!: "<<units[i].bloodGroup<<" EXPIRING IN"<<units[i].expiryDays<<"DAYS"<<endl;
+			found=1;
+		}
+		i=i+1;
+	}
+	if(found==0){
+		cout<<"==No Expiry Alert=="<<endl;
+	}
+}
+int BloodBank::showTotalUnits(){
+	return totalUnits;
+}
 EmergencyRequest::EmergencyRequest(string name, string bg, string urgency){
 			patientName=name;
 			bloodGroupNeeded=bg;
