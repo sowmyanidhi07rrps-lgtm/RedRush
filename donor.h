@@ -1,8 +1,7 @@
-// ================================================
-// Donor.h
-// Header file for donor management
-// Contains class declarations
-// ================================================
+//==============================================
+//donor.h
+//contains class declaration
+//===============================================
 
 #ifndef DONOR_H
 #define DONOR_H
@@ -12,74 +11,70 @@
 
 using namespace std;
 
+//===============================================
+//PERSON CLASS
+//===============================================
 
-// ================================================
-// PERSON CLASS
-// ================================================
-
-class Person {
+class person {
 
 protected:
     string name;
     int age;
-
 public:
-    Person(string n, int a);
-    ~Person();
+   person(string n, int a);
+   ~person();
 };
 
+//================================================
+//DONOR CLASS
+//===============================================
 
-// ================================================
-// DONOR CLASS
-// ================================================
+class donor : public person{
 
-class Donor : public Person {
+private: 
+   string bloodgroup;
+   int dayssincelastdonations;
 
-private:
-    string bloodGroup;
-    int daysSinceLastDonation;
-
-    static int totalDonors;
+   static int totaldonors;
 
 public:
-    Donor();
-    Donor(string n, int a, string bg, int days);
-    ~Donor();
+  donor();
+  donor(string n, int a,string bg,int days);
+  ~donor();
 
-    int isEligible();
+  bool iseligible();
 
-    void display();
-    void display(string title);
+  void display();
+  void display(string title);
 
-    int operator==(Donor d);
+  bool operator==(const donor &d);
 
-    int showTotalDonors();
+  int showtotaldonors();
 
-    string getName();
-    string getBloodGroup();
+  string getname()
+  string getbloodgroup();
 };
 
+//==================================================
+//BLOOD UNIT CLASS
+//==================================================
 
-// ================================================
-// BLOOD UNIT CLASS
-// ================================================
-
-class BloodUnit {
-
+class bloodunit{
 private:
-    string bloodGroup;
-    int quantity;
-    int expiryDays;
+   string bloodgroup;
+   int quantity;
+   int expirydays;
 
 public:
-    BloodUnit();
-    BloodUnit(string bg, int qty, int exp);
-    ~BloodUnit();
+   bloodunit();
+   bloodunit(string bg, int qty,int exp);
+   ~bloodunit();
 
-    int isExpired();
-    int isExpiringSoon();
+ bool isexpired();
+ bool isexpiringsoon();
 
-    void display();
+ void display();
+
 };
 
 #endif
