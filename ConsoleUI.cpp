@@ -1,5 +1,23 @@
-//implementation
+//ConsoleUI.cpp
 #include "ConsoleUI.h"
+static void printCell(const string& val,int colWidth)
+{
+  cout<<"|"<<val;
+  int spaces=colWidth-(int)val.length();
+  if(spaces<1)spaces=1;
+  for(int i=0;i< spaces;i++)
+    cout<<" ";
+}
+static void printDivider(int cols,int colWidth)
+{
+  for(int c=0;c< cols;c++)
+    {
+      cout<<"+";
+      for(int i=0;i< colWidth+1;i++)
+        cout<<"-";
+    }
+  cout<<"+"<<endl;
+}
 Menu::Menu(string t)
 {
   title=t;
@@ -18,7 +36,19 @@ void Menu::display(string options[],int size)
     i=i+1;
   }
   cout<<"Enter your choice: ";
-  }
+}
+void Menu::display(string options[],int size,string message)
+{
+  cout<<endl;
+  cout<<"===== "<<title<<" ====="<<endl;
+  if(!message.empty())
+    cout<<">> "<<message<<endl;
+  for(int i=0;i<size;i++)
+    {
+      cout<<i+1<<". "<<options[i]<<endl;
+    }
+  cout<<"Enter your choice: ";
+}
  Table::Table(string h)
  {
    heading=h;
