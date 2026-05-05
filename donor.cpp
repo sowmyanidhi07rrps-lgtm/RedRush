@@ -35,7 +35,7 @@ Donor::Donor(string n,int a,string bg,int days,string condition) : Person (n,a) 
     totalDonors = totalDonors+1;
 }
 
-Donors::~Donors(){
+Donor::~Donor(){
 }
 
 int Donor :: isEligible() {
@@ -45,7 +45,7 @@ int Donor :: isEligible() {
     
 return 0;
 }
-void Donor::checkEligbility(){
+void Donor::checkEligibility(){
 cout<<endl;
 cout<<"==Eligbility Check=="<<endl;
 cout<<"name:"<<name<<endl;
@@ -57,7 +57,7 @@ if(daysSinceLastDonation>=56)
       cout<<"days:ok"<<endl;
 else
       cout<<"Days:Fail"<<endl;
-if(medicalCondition=="none")
+if(medicalCondition=="NONE")
       cout<<"Condition:ok"<<endl;
 else
       cout<<"condition:fail"<<endl;
@@ -67,14 +67,14 @@ if(isEligible()==1)
 
 void Donor :: display(){
 
-    cout<<endli;
+    cout<<endl;
     cout<<"-------------------------"<<endl;
     cout<<"Name: "    << name << endl;
     cout<<"Age: "     << age << endl;    
-    cout<<"blood group:   << bloodgroup <<endl;
+    out << "Blood Group: " << bloodGroup << endl;
     cout<<"last donated:   << daysSinceLastDonation  <<endl;
 
-    if(iseligible()==1)
+    if(isEligible()==1)
         cout << "status   :eligible to donate" <<endl;
    else
         cout << "status   :not eligible" <<endl;
@@ -83,7 +83,7 @@ void Donor :: display(){
 }
 
 void Donor :: display(string title){
-    Cout<<"MEedical conditiom:"<<medicalcondition<<endl;
+    cout<<"MEedical conditiom:"<<medicalCondition<<endl;
     cout<<endl;
     cout<<title <<endl;
     display();
@@ -97,15 +97,15 @@ int Donor :: operator == (Donor d){
 return 0;
 }
 
-int donor :: showTotalDonors(){
-    return totalDonors;
+int Donor::showTotalDonors(){
+      return totalDonors;
 }
 
 string Donor :: getName() {
     retun name;
 }
 
-string Donors :: getBloodGroup() {
+string Donor::getbloodGroup() {
     return bloodGroup;
 }
 
@@ -115,13 +115,13 @@ string Donors :: getBloodGroup() {
 BloodUnit :: BloodUnit() {
    bloodGroup=" ";
    quantity=0;
-   expirydays=0;
+   expiryDays=0;
 }
 
 BloodUnit :: BloodUnit(string bg,int qty,int exp) {
     bloodunit=bg;
     quantity=qty;
-    expirydays=exp;
+    expiryDays=exp;
 }
 
 BloodUnit :: ~BloodUnit() {
@@ -129,7 +129,7 @@ BloodUnit :: ~BloodUnit() {
 
 int BloodUnit :: isExpired(){
 
-    if(expirydays <= 0)
+    if(expiryDays <= 0)
         return 1;
 
 return 0;
@@ -137,7 +137,7 @@ return 0;
 
 int BloodUnit :: isExpiringSoon() {
 
-    if(expirydays > 0 && expirydays <=5)
+    if(expiryDays > 0 && expiryDays <=5)
         return 1;
 
 return 0;
@@ -149,7 +149,7 @@ void BloodUnit :: display() {
     cout<<"-------------------------------"<< endl;
     cout<<"blood":<<"  "<<bloodGroup <<endl;
     cout<<"quantity:   :" <<quantity <<"units" << endl;
-    cout<<"expiry:    "<<expirydays<<"days" <<endl;
+    cout<<"expiry:    "<<expiryDays<<"days" <<endl;
 
 if(isexpired())
     cout<<"status:  expired -remove!" <<endl;
