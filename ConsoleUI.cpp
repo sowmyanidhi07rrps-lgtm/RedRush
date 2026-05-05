@@ -56,6 +56,17 @@ void Menu::display(string options[],int size,string message)
  Table::~Table()
  {
  }
+static int calcColWidth(string col1,string col2,string col3,string v1,string v2,string v3)
+{
+  int w=10;
+  if((int)col1.length()>w)w=col1.length();
+  if((int)col2.length()>w)w=col2.length();
+   if((int)col3.length()>w)w=col3.length();
+   if((int)v1.length()>w)w=v1.length();
+   if((int)v2.length()>w)w=v2.length();
+   if((int)v3.length()>w)w=v3.length();
+  return w+2;
+}
  void Table::printHeader(string col1,string col2,string col3)
  {
       cout<<endl;
