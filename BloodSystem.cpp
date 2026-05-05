@@ -91,7 +91,7 @@ int EmergencyRequest::operator>(EmergencyRequest r){
 }
 void MatchingEngine::matchFromBank(EmergencyRequest req, BloodBank bank){
 	cout<<endl;
-	cout<<"==Searching Blood Ban==k"<<endl;
+	cout<<"==Searching Blood Bank=="<<endl;
 	if(bank.isAvailable(req.bloodGroupNeeded)==1){
 		cout<<endl;
 		cout<<"====MATCH FOUND IN BLOOD GROUP===="<<endl;
