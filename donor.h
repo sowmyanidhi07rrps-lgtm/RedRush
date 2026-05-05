@@ -21,8 +21,10 @@ public:
     string name;
     int age;
 public:
-   person(string n, int a);
+    Person(string n, int a);
    ~Person();
+    virtual ~Person();
+    virtual void display() = 0;
 };
 
 //================================================
@@ -35,7 +37,7 @@ public:
    string bloodGroup;
    int daysSinceLastDonation;
    string medicalCondition;
-   static int totaldonors;
+   static int totalDonors;
 
 public:
   Donor();
@@ -43,15 +45,15 @@ public:
   ~Donor();
 
   int isEligible();
-  void checkEligiblity();
+  void checkEligibility();
   void display();
   void display(string title);
 
   int operator==(Donor d);
 
-  static int show totalDonor();
+  static int showTotalDonors()
 
-  string getName()
+  string getName();
   string getBloodGroup();
 };
 
@@ -59,9 +61,9 @@ public:
 //BLOOD UNIT CLASS
 //==================================================
 
-class bloodUnit{
+class BloodUnit{
 public:
-   string BloodGroup;
+   string bloodGroup;
    int quantity;
    int expiryDays;
 
