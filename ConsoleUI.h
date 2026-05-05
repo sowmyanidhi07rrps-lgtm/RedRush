@@ -19,7 +19,7 @@ class Table
     string heading;
     Table(string h);
     ~Table();
-    void printHeader(string col1,stringcol2,string col3);
+    void printHeader(string col1,string col2,string col3);
     void printRow(string v1,string v2,string v3);
     void printFooter();
 };
