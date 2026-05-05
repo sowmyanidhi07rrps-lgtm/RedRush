@@ -30,7 +30,10 @@ class Table
 Menu::Menu(string t)
 {
   title=t;
-} 
+}
+Menu::~Menu()
+{
+}
 void Menu::display(string options[],int size)
 {
   cout<<endl;
@@ -108,16 +111,5 @@ void Menu::display(string options[],int size)
     {
       cout<<"+-----------------+------------------+-----------------+"<<endl;
     }
-#include "ConsoleUI.h"
-int main()
-{
-  string options[]={"Add Donor","Search donor","Exit"};
-  Menu m("Blood Bank System");
-  m.display(options,3);
-  Table t("Donor List");
-  t.printHeader("Name","Blood","City");
-  t.printRow("Ravi","A+","Delhi");
-  t.printRow("Aman","O+","Lucknow");
-  t.printFooter();
   return 0;
 }
