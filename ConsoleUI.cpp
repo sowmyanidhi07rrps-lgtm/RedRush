@@ -110,9 +110,9 @@ void Menu::display(string options[],int size,string message)
       }
       cout<<"|"<<endl;
     }
-    void Table::printFooter()
+    void Table::printFooter(int colWidth)
     {
-      cout<<"+-----------------+------------------+-----------------+"<<endl;
+      printDivider(3, colWidth);
     }
   return 0;
 }
