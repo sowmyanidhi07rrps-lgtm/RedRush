@@ -9,49 +9,70 @@
 
 //PERSON CLASS
 
-person:: person(string n int a);{
+Person:: Person(string n ,int a){
       name = n;
       age = a;
 }
 
-person:: ~person(){
+Person:: ~Person(){
 }
 
 
 //DONOR CLASS
 
-int donor::totaldonors=0
+int Donor::totalDonors=0;
 
-donor::donor() : person("",0){
-     bloodgroup="";
-    dayssincelastdonation = 0;
+Donor::Donor() : Person("",0){
+     bloodGroup="";
+     daysSinceLastDonation = 0;
+     medicalCondition="none"; 
 }
 
-donor::donor(string n,int a,string bg,int days) : person (n,a) {
-    bloodgroup=bg;
-    dayssincelastdonation =0;
-    totaldonors = totaldonors+1;
+Donor::Donor(string n,int a,string bg,int days,string condition) : Person (n,a) {
+    bloodGroup=bg;
+    daysSinceLastDonation =days;
+    medicalCondition =condition;  
+    totalDonors = totalDonors+1;
 }
 
-donors::~donors(){
+Donors::~Donors(){
 }
 
-int donor :: iseligible() {
+int Donor :: isEligible() {
     
-    if(age >=18 && age <= 60 && dayssincelastdonation >= 56)
+    if(age >=18 && age <= 60 && daysSinceLastDonation >= 56 && medicalCondition =="none")
         return 1;
     
 return 0;
 }
+void Donor::checkEligbility(){
+cout<<endl;
+cout<<"==Eligbility Check=="<<endl;
+cout<<"name:"<<name<<endl;
+if(age>=18 && age<=60)
+      cout<<"age: ok"<<endl;
+else
+      cout<<"age:fail"<<endl;
+if(daysSinceLastDonation>=56)
+      cout<<"days:ok"<<endl;
+else
+      cout<<"Days:Fail"<<endl;
+if(medicalCondition=="none")
+      cout<<"Condition:ok"<<endl;
+else
+      cout<<"condition:fail"<<endl;
+if(isEligible()==1)
+      cout<<"Result: NOT ELIBIBLE"<<endl;
+}
 
-void donor :: display(){
+void Donor :: display(){
 
     cout<<endli;
     cout<<"-------------------------"<<endl;
-    cout<<"name:     << name << endl;
-    cout<<"age:      << age << endl;    
+    cout<<"Name: "    << name << endl;
+    cout<<"Age: "     << age << endl;    
     cout<<"blood group:   << bloodgroup <<endl;
-    cout<<"last donated:   << dayssincelastdonation  <<endl;
+    cout<<"last donated:   << daysSinceLastDonation  <<endl;
 
     if(iseligible()==1)
         cout << "status   :eligible to donate" <<endl;
@@ -61,52 +82,52 @@ void donor :: display(){
   cout<<"------------------------------"<<endl;
 }
 
-void donor :: display(string title){
-
+void Donor :: display(string title){
+    Cout<<"MEedical conditiom:"<<medicalcondition<<endl;
     cout<<endl;
     cout<<title <<endl;
     display();
 }
 
-int donor :: operator == (donor d){
+int Donor :: operator == (Donor d){
 
-    if(bloodgroup == d.bloodgroup)
+    if(bloodGroup == d.bloodGroup)
         return 1;
 
 return 0;
 }
 
-int donor :: showtotaldonors(){
-    return totaldonors;
+int donor :: showTotalDonors(){
+    return totalDonors;
 }
 
-string donor :: getname() {
+string Donor :: getName() {
     retun name;
 }
 
-string donors :: getbloodgroup() {
-    return bloodgroup;
+string Donors :: getBloodGroup() {
+    return bloodGroup;
 }
 
 
 //BLOOD UNIT CLASS
 
-bloodunit :: bloodunit() {
-   bloodgroup=" ";
+BloodUnit :: BloodUnit() {
+   bloodGroup=" ";
    quantity=0;
    expirydays=0;
 }
 
-bloodunit :: bloodunit(string bg,int qty,int exp) {
+BloodUnit :: BloodUnit(string bg,int qty,int exp) {
     bloodunit=bg;
     quantity=qty;
     expirydays=exp;
 }
 
-bloodunit :: ~bloodunit() {
+BloodUnit :: ~BloodUnit() {
 }
 
-int bloodunit :: isexpired(){
+int BloodUnit :: isExpired(){
 
     if(expirydays <= 0)
         return 1;
@@ -114,7 +135,7 @@ int bloodunit :: isexpired(){
 return 0;
 }
 
-int bloodunit :: isexpiringsoon() {
+int BloodUnit :: isExpiringSoon() {
 
     if(expirydays > 0 && expirydays <=5)
         return 1;
@@ -122,11 +143,11 @@ int bloodunit :: isexpiringsoon() {
 return 0;
 }
 
-void bloodunit :: display() {
+void BloodUnit :: display() {
 
     cout << endl;
     cout<<"-------------------------------"<< endl;
-    cout<<"blood group :  "<<bloodgroup <<endl;
+    cout<<"blood":<<"  "<<bloodGroup <<endl;
     cout<<"quantity:   :" <<quantity <<"units" << endl;
     cout<<"expiry:    "<<expirydays<<"days" <<endl;
 
