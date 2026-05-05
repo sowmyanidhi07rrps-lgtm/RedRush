@@ -80,7 +80,7 @@ static int calcColWidth(string col1,string col2,string col3,string v1,string v2,
       printCell(col1,w);
       printCell(col2,w);
       printCell(col3,w);
-      cout<<"|"<<cendl;
+      cout<<"|"<<endl;
       printDivider(3,w);
     }
     void Table::printRow(string v1,string v2,string v3)
@@ -99,5 +99,4 @@ static int calcColWidth(string col1,string col2,string col3,string v1,string v2,
     {
       printDivider(3, colWidth);
     }
-  return 0;
-}
+  
