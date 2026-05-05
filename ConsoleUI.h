@@ -11,6 +11,7 @@ class Menu
  public:
    string title;
    Menu(string t);
+   ~Menu();
    void display(string options[],int size);
    void display(string options[],int size,string message);
 };
