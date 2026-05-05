@@ -9,7 +9,7 @@
 int main(){
 	BloodBank bank;
 	Donor donors[100];
-	int DonorCount=0;
+	int donorCount=0;
 	MatchingEngine engine;
 	Menu mainMenu("RedRush- Blood Donation Coordination System");
 	Table donorTable("Registered Donors");
@@ -40,6 +40,13 @@ int main(){
 			int age,days;
 			cout<<endl;
 			cout<<"====Regiser New Donor===="<<endl;
+			cout << "--- Eligibility Criteria ---" << endl;
+            cout << "  Age         : Must be between 18 and 60 years" << endl;
+            cout << "  Last Donated: Must be at least 56 days ago (or first time)" << endl;
+            cout << "  Conditions  : The following DISQUALIFY a donor:" << endl;
+            cout << "                HIV, HEPATITIS, DIABETES, CANCER" << endl;
+            cout << "----------------------------" << endl;
+            cout << endl;
 			cout<<"Enter Name: ";
 			cin>>name;
 			cout<<"Enter Age: ";
@@ -180,7 +187,7 @@ int main(){
             cout<<"========================"<<endl;
             cout<<"SYSTEM STATISTICS"<<endl;
             cout<<"========================="<<endl;
-            cout<<"Total Donors Registered: "<<DonorCount<<endl;
+            cout<<"Total Donors Registered: "<<donorCount<<endl;
             cout<<"Total Blood Units: "<< BloodBank::showTotalUnits()<<endl;
             cout<<"Total Emergency Requests: "<<EmergencyRequest::showTotalRequests()<<endl;
         }
