@@ -10,7 +10,7 @@ int main(){
 	BloodBank bank;
 	Donor donors[100];
 	int DonorCount=0;
-	MatchingEngine=engine;
+	MatchingEngine engine;
 	Menu mainMenu("RedRush- Blood Donation Coordination System");
 	Table donorTable("Registered Donors");
 	
@@ -36,7 +36,7 @@ int main(){
 		mainMenu.display(options,9);
 		cin>>choice;
 		if(choice==1){
-			string name,bg;
+			string name,bg,condition;
 			int age,days;
 			cout<<endl;
 			cout<<"====Regiser New Donor===="<<endl;
@@ -57,14 +57,12 @@ int main(){
 					throw "Age can't be negative!";
 				}
 				if(days<0){
-					throw "Days can't be neagtive!";
+					throw "Days can't be negative!";
 				}
+				donors[donorCount]=Donor(name,age,bg,days,condition);
+				donorCount=donorCount+1;
+				cout<<"====Donor Regitered Successfully!===="<<endl;
 			}
-			donors[donorCount]=Donor(name,age,bg,days,condition);
-			donorCount=donorCount+1;
-			cout<<endl;
-			cout<<"====Donor Regitered Successfully!===="<<endl;
-		} 
 		catch(const char* error){
 			cout<<endl;
 			cout<<"Error: "<<error<<endl;
@@ -89,7 +87,7 @@ int main(){
 				if(exp<=0){
 					throw "Expiry days must be greater than 0!";
 				}
-				bank.addUnit(BloodUnit(bg,qty,exp))
+				bank.addUnit(BloodUnit(bg,qty,exp));
 				cout<<endl;
 				cout<<"====Blood Unit Added Successfully!===="<<endl;
 			}
@@ -143,7 +141,7 @@ int main(){
 						status="==ELIGIBLE==";
 					}
 					else{
-						status="==NOT ELIGIBLE=="
+						status="==NOT ELIGIBLE==";
 					}
 					donorTable.printRow(donors[i].name,donors[i].bloodGroup,status);
 					i=i+1;
@@ -198,7 +196,7 @@ int main(){
             cout<<"Invalid choice! Please try again"<<endl;
         }
 
-    } while(choice != 8);
+    } while(choice != 9);
 
     return 0;
 }
