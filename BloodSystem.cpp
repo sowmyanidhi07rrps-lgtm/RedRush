@@ -2,12 +2,13 @@
 //author: Sowmya
 //RedRush- Emergency Blood Donor Coordination System
 
-#include<"BloodSystem.h">
+#include "BloodSystem.h"
+int EmergencyRequest::totalRequests=0;
 int BloodBank::totalUnits=0;
-BloodBank::Bloodbank(){
+BloodBank::BloodBank(){
 	count=0;
 }
-BloodBank::~Bloodbank(){
+BloodBank::~BloodBank(){
 }
 void BloodBank::addUnit(BloodUnit u){
 	units[count]=u;
@@ -49,7 +50,7 @@ void BloodBank::checkExpiry(){
 			cout<<"CRITICAL: "<<units[i].bloodGroup<<" HAS EXPIRED!"<<endl;
 			found=1;
 		}
-		else if(units[i].isExpiringSonn()==1){
+		else if(units[i].isExpiringSoon()==1){
 			cout<<"WARNING!: "<<units[i].bloodGroup<<" EXPIRING IN"<<units[i].expiryDays<<"DAYS"<<endl;
 			found=1;
 		}
@@ -73,14 +74,10 @@ EmergencyRequest::~EmergencyRequest(){
 void EmergencyRequest::display(){
 	cout<<endl;
 	cout<<"====Raise Emergency Request===="<<endl;
-	cout<<"Patient Name: ";
-	cin>>patientName;
-	cout<<"Blood Group Needed: ";
-	cin>>bloodGroupNeeded;
-	cout<<"Urgency Level(Critical/Moderate/Low): ";
-	cin>>urgencyLevel;
-	cout<<"Request No: ";
-	cin>>totalRequests;
+	cout<<"Patient Name: "<<patientName<<endl;
+	cout<<"Blood Group Needed: "<<bloodGroupNeeded<<endl;
+	cout<<"Urgency Level(Critical/Moderate/Low): "<<urgencyLevel<<endl;
+	cout<<"Request No: "<<totalRequests<<endl;
 }
 void EmergencyRequest::display(string extraMessage){
 	display();
@@ -111,7 +108,7 @@ void MatchingEngine::matchFromDonors(EmergencyRequest req, Donor donors[], int d
 	int found=0;
 	int i=0;
 	while(i<donorCount){
-		if(donors[i].bloodGroup==req.bloodGroupNeeded && donors[i].isEligble()==1){
+		if(donors[i].bloodGroup==req.bloodGroupNeeded && donors[i].isEligible()==1){
 			cout<<endl;
 			cout<<"==DONOR FOUND=="<<endl;
 			cout<<"Donor Name: "<<donors[i].name<<endl;
@@ -125,7 +122,7 @@ void MatchingEngine::matchFromDonors(EmergencyRequest req, Donor donors[], int d
 		cout<<"==NO ELIGIBLE DONOR FOUND=="<<endl;
 	}
 }
-void MatchingEngine::findMatch(EmergencyRequest req, bloodBank bank, Donor donors[], int donorCount){
+void MatchingEngine::findMatch(EmergencyRequest req, BloodBank bank, Donor donors[], int donorCount){
 	cout<<endl;
 	cout<<"================================="<<endl;
 	cout<<"==START EMERGENCY MATCH=="<<endl;
@@ -140,7 +137,6 @@ void MatchingEngine::findMatch(EmergencyRequest req, bloodBank bank, Donor donor
 		matchFromBank(req,bank);
 	}
 	else{
-		matchFromBank(req,bank);
 		matchFromDonors(req,donors,donorCount);
 	}
 }
