@@ -4,6 +4,8 @@
 //Author:Sowmya
 //========================================
 
+#ifndef BLOODSYSTEM_H
+#define BLOODSYSTEM_H
 #include<iostream>
 #include<string>
 #include "Donor.h"
@@ -21,7 +23,7 @@ public:
 	~BloodBank();
 	void addUnit(BloodUnit u);
 	int isAvailable(string bloodGroup);
-	void displayInventory;
+	void displayInventory();;
 	void checkExpiry();
 	static int showTotalUnits();
 	friend class MatchingEngine;
@@ -39,7 +41,7 @@ class EmergencyRequest{
 };
 class MatchingEngine{
 	public:
-			void MatchFromBank(EmergencyRequest req, BloodBank bank);
+			void matchFromBank(EmergencyRequest req, BloodBank bank);
 			void matchFromDonors(EmergencyRequest req, Donor donors[], int DonorCount);
 			void findMatch(EmergencyRequest req, BloodBank bank, Donor donors[], int donorCount);
 };
