@@ -23,6 +23,6 @@ class Table
     ~Table();
     void printHeader(string col1,string col2,string col3);
     void printRow(string v1,string v2,string v3);
-    void printFooter();
+    void printFooter(int colWidth);
 };
 #endif
