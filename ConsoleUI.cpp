@@ -76,30 +76,12 @@ static int calcColWidth(string col1,string col2,string col3,string v1,string v2,
       w+=2;
       cout<<endl;
       cout<<" "<< heading <<endl;
-      cout<<"+----------------+----------------+-----------------+"<<endl;
-      cout<<"|"<<col1;
-      int i=col1.length();
-      while(i<17)
-      {
-        cout<<" ";
-        i=i+1;
-      }
-      cout<<"|"<<col2;
-      i=col2.length();
-      while(i<17)
-      {
-        cout<<" ";
-        i=i+1;
-      }
-      cout<<"|"<<col3;
-      i=col3.length();
-      while(i<17)
-      {
-        cout<<" ";
-        i=i+1;
-      }
-      cout<<"|"<<endl;
-      cout<<"+-------------+---------------+--------------+"<<endl;
+      printDivider(3,w);
+      printCell(col1,w);
+      printCell(col2,w);
+      printCell(col3,w);
+      cout<<"|"<<cendl;
+      printDivider(3,w);
     }
     void Table::printRow(string v1,string v2,string v3)
     {
