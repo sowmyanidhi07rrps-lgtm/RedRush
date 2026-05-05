@@ -12,6 +12,7 @@ class Menu
    string title;
    Menu(string t);
    void display(string options[],int size);
+   void display(string options[],int size,string message);
 };
 class Table
 {
