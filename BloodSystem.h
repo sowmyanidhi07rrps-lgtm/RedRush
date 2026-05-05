@@ -6,20 +6,23 @@
 
 #include<iostream>
 #include<string>
-#include<"Donor.h">
+#include "Donor.h"
+using namespace std;
 template <class T>
 void ShowDetail(string label, T value){
 	cout<<label<<":"<<value<<endl;
 }
 class BloodBank{
+public:
 	BloodUnit units[100];
 	int count;
 	static int totalUnits;
-	Bloodbank();
+	BloodBank();
 	~BloodBank();
 	void addUnit(BloodUnit u);
 	int isAvailable(string bloodGroup);
-	void displayInventory, checkExpiry();
+	void displayInventory;
+	void checkExpiry();
 	static int showTotalUnits();
 	friend class MatchingEngine;
 };
@@ -34,10 +37,10 @@ class EmergencyRequest{
 		int operator>(EmergencyRequest r);
 		static int showTotalRequests();
 };
-class MatchingEngine(){
+class MatchingEngine{
 	public:
 			void MatchFromBank(EmergencyRequest req, BloodBank bank);
-			void MatchFromDonors(EmergencyRequest req, Donor donors[], int DonorCount);
-			void FindMatch(EmergencyRequest req, BloodBank bank, Donor donors[], int donorCount);
+			void matchFromDonors(EmergencyRequest req, Donor donors[], int DonorCount);
+			void findMatch(EmergencyRequest req, BloodBank bank, Donor donors[], int donorCount);
 };
 
