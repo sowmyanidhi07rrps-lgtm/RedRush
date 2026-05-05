@@ -15,63 +15,63 @@ using namespace std;
 //PERSON CLASS
 //===============================================
 
-class person {
+class Person {
 
-protected:
+public:
     string name;
     int age;
 public:
    person(string n, int a);
-   ~person();
+   ~Person();
 };
 
 //================================================
 //DONOR CLASS
 //===============================================
 
-class donor : public person{
+class Donor : public Person{
 
-private: 
-   string bloodgroup;
-   int dayssincelastdonations;
-
+public: 
+   string bloodGroup;
+   int daysSinceLastDonation;
+   string medicalCondition;
    static int totaldonors;
 
 public:
-  donor();
-  donor(string n, int a,string bg,int days);
-  ~donor();
+  Donor();
+  Donor(string n, int a,string bg,int days,string condition);
+  ~Donor();
 
-  bool iseligible();
-
+  int isEligible();
+  void checkEligiblity();
   void display();
   void display(string title);
 
-  bool operator==(const donor &d);
+  int operator==(Donor d);
 
-  int showtotaldonors();
+  static int show totalDonor();
 
-  string getname()
-  string getbloodgroup();
+  string getName()
+  string getBloodGroup();
 };
 
 //==================================================
 //BLOOD UNIT CLASS
 //==================================================
 
-class bloodunit{
-private:
-   string bloodgroup;
+class bloodUnit{
+public:
+   string BloodGroup;
    int quantity;
-   int expirydays;
+   int expiryDays;
 
 public:
-   bloodunit();
-   bloodunit(string bg, int qty,int exp);
-   ~bloodunit();
+   BloodUnit();
+   BloodUnit(string bg, int qty,int exp);
+   ~BloodUnit();
 
- bool isexpired();
- bool isexpiringsoon();
+ int isExpired();
+ int isExpiringSoon();
 
  void display();
 
