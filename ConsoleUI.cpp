@@ -85,27 +85,14 @@ static int calcColWidth(string col1,string col2,string col3,string v1,string v2,
     }
     void Table::printRow(string v1,string v2,string v3)
     {
-      cout<<"|"<<v1;
-      int i= v1.length();
-      while(i<17)
-      {
-        cout<<" ";
-        i=i+1;
-      }
-      cout<<"|"<<v2;
-      i=v2.length();
-      while(i<17)
-      {
-        cout<<" ";
-        i=i+1;
-      }
-      cout<<"|"<<v3;
-      i=v3.length();
-      while(i<17)
-      {
-        cout<<" ";
-        i=i+1;
-      }
+      int w=10;
+      if((int)v1.length()>w)w=v1.length();
+      if((int)v2.length()>w)w=v2.length();
+      if((int)v3.length()>w)w=v3.length();
+      w+=2;
+      printCell(v1,w);
+      printCell(v2,w);
+      printCell(v3,w);
       cout<<"|"<<endl;
     }
     void Table::printFooter(int colWidth)
